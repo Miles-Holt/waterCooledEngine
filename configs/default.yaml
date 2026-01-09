@@ -1,0 +1,46 @@
+# Default configuration for waterCooledEngine
+# Edit values for your case before running.
+
+geometry:
+  contour_csv: data/liner_contour.csv  # path to CSV with columns: x (mm), radius (mm)
+  units: mm
+
+materials:
+  liner:
+    name: Inconel_718
+    thermal_conductivity: 11.4  # W/m-K (example)
+    density: 8190  # kg/m3
+  jacket:
+    name: Inconel_718
+    thermal_conductivity: 11.4
+    density: 8190
+
+coolant:
+  type: water
+  inlet_temperature: 293.15  # K
+  outlet_pressure: 101325  # Pa (user will provide outlet pressure)
+  flow_rate_gpm: 10.0
+  roughness: 1e-6  # m
+
+fins:
+  count: 0
+  width: 0.002  # m
+
+geometry_params:
+  liner_thickness: 0.002  # m
+  jacket_thickness: 0.005  # m
+  gap_thickness_axial: [0.005, 0.005, 0.005, 0.005]  # m at key axial stations
+
+combustion:
+  throat_density: 0.5  # kg/m3 (example placeholder)
+  throat_pressure: 1e6  # Pa
+  throat_temperature: 3000.0  # K
+  gamma: 1.2
+  cp: 1000.0  # J/kg-K
+  mu: 1e-5  # Pa-s
+  molecular_weight: 22.0
+  omega_hotside: 0.9
+
+solver:
+  fem_library: sfepy
+  mesh_backend: pygmsh
